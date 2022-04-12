@@ -28,11 +28,14 @@ def degn(a):
       l+=f_
     return l
 
-def pr(lis):
+def pr(lis, mark):
   m=0
   for i in lis:
     m+=1
-    print(m,i)
+    if i==mark:
+      print(m, i,' <----Over here')
+    else:
+      print(m,i)
 
 def funcher(func):
   def funched(a):
@@ -54,7 +57,7 @@ def eliminator(lis):
     if i in d:
       continue
     elif i not in d:
-      d+=[i]
+      d.append(i)
   return d
 
 def dis_check(a):
@@ -75,8 +78,7 @@ n =len(wrd)
 for i in range(4,n+1):
   degn = funcher(degn)
 
-an = degn(wrd)
 if dis_check(wrd):
-  pr(an)
+  pr(degn(wrd),wrd)
 else:
-  pr(eliminator(wrd))
+  pr(eliminator(degn(wrd)),wrd)
