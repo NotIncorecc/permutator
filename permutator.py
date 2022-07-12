@@ -28,14 +28,14 @@ def degn(a):
       l+=f_
     return l
 
-def pr(lis, mark):
+def pr(lis, mark, file):#prints the output
   m=0
   for i in lis:
     m+=1
     if i==mark:
-      print(m, i,' <----Over here')
+      file.write(str(m)+' '+i+' <----Over here\n')
     else:
-      print(m,i)
+      file.write(str(m)+' '+i+'\n')
 
 def funcher(func):
   def funched(a):
@@ -51,7 +51,7 @@ def funcher(func):
     return fi
   return funched
 
-def eliminator(lis):
+def eliminator(lis):#removes words that repeat, no need to use it if all characters are distinct
   d= []
   for i in lis:
     if i in d:
@@ -60,7 +60,7 @@ def eliminator(lis):
       d.append(i)
   return d
 
-def dis_check(a):
+def dis_check(a):#checks if all characters are distinct or not, so we don't have to use eliminator()
   h =[]
   for i in a:
     if i in h:
@@ -72,6 +72,8 @@ def dis_check(a):
     t= True
   return t
 
+f = open('words.txt','w')
+
 wrd = input('Enter the word:')
 n =len(wrd)
 
@@ -79,6 +81,8 @@ for i in range(4,n+1):
   degn = funcher(degn)
 
 if dis_check(wrd):
-  pr(degn(wrd),wrd)
+  pr(degn(wrd),wrd, f)
 else:
-  pr(eliminator(degn(wrd)),wrd)
+  pr(eliminator(degn(wrd)),wrd, f)
+
+print('Done!')
